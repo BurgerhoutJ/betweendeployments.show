@@ -5,9 +5,8 @@ A conversation series about modern workplace IT — Intune, Entra ID, Windows 36
 Hosted by **Jeroen Burgerhout** (Microsoft Intune MVP).
 
 🌐 [betweendeployments.show](https://betweendeployments.show)  
-🎧 [Subscribe via RSS](https://api.substack.com/feed/podcast/2886741.rss)  
-📰 [Substack](https://www.burgerhout.org/podcast)
+🎧 [Subscribe via RSS](https://api.substack.com/feed/podcast/2886741.rss)
 
 ## How it works
 
-A GitHub Action runs every 6 hours to fetch the podcast RSS feed from Substack and generate Jekyll posts automatically.
+A GitHub Action runs every 6 hours to fetch the podcast RSS feed from Substack and generate posts automatically.

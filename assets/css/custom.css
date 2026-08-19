@@ -1,7 +1,7 @@
 /* Custom overrides for Between Deployments */
 
-body, h1, h2, h3, h4, h5, h6, .sitetitle, .card-title, .nav-link {
-    font-family: "Roboto Slab", serif;
+body, h1, h2, h3, h4, h5, h6, .sitetitle, .card-title, .nav-link, p, a, li, span, .lead, .article-post {
+    font-family: "Roboto Slab", serif !important;
 }
 
 .site-logo {
