@@ -16,15 +16,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch RSS and convert to JSON
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Fetch RSS and generate posts
         run: |
           curl -sf "https://api.substack.com/feed/podcast/2886741.rss" -o feed.xml
-          python3 scripts/rss_to_json.py feed.xml episodes.json
+          python3 scripts/rss_to_posts.py feed.xml _posts
           rm feed.xml
 
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add episodes.json
+          git add _posts
           git diff --cached --quiet || git commit -m "Update episodes $(date -u +%Y-%m-%dT%H:%M:%SZ)" && git push

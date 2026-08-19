@@ -1,0 +1,53 @@
+# Site
+name: "Between Deployments"
+title: "Between Deployments"
+description: "Conversations about modern workplace IT — Intune, Entra ID, Windows 365, and cloud-native device management. Hosted by Jeroen Burgerhout."
+logo: "assets/images/logo.png"
+favicon: "assets/images/logo.png"
+baseurl: ""
+url: "https://betweendeployments.show"
+google_analytics:
+disqus:
+mailchimp-list:
+include: ["_pages"]
+permalink: /:title/
+
+# Theme
+remote_theme: codebygina/mediumish-theme-jekyll
+
+# Authors
+authors:
+  jeroen:
+    name: Jeroen Burgerhout
+    display_name: Jeroen Burgerhout
+    avatar: "assets/images/avatar.jpg"
+    email: burgerhoutj@substack.com
+    web: https://www.burgerhout.org
+    twitter: https://twitter.com/yourhandle
+    description: "Microsoft MVP. Conversations about modern workplace IT — Intune, Entra ID, Windows 365, and everything cloud-native device management."
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-remote-theme
+
+# Pagination
+paginate: 9
+paginate_path: /page:num/
+
+# Other
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Lazy Images
+lazyimages: "disabled"
+
+# Adsense
+adsense: "disabled"
+
+exclude: [scripts, feed.xml.bak, README.md, Gemfile, Gemfile.lock]
