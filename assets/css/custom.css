@@ -1,1 +1,6 @@
 /* Custom overrides for Between Deployments */
+
+.navbar-brand img {
+    max-height: 40px;
+    width: auto;
+}
