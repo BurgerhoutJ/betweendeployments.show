@@ -5,26 +5,19 @@ title: Home
 
 {% if page.url == "/" %}
 
-<!-- Featured
+<!-- About
 ================================================== -->
-<section class="featured-posts">
+{% assign about_page = site.pages | where: "url", "/about" | first %}
+{% if about_page %}
+<section class="about-intro">
     <div class="section-title">
-        <h2><span>Featured</span></h2>
+        <h2><span>{{ about_page.title }}</span></h2>
     </div>
-    <div class="row">
-
-    {% for post in site.posts %}
-
-        {% if post.featured == true %}
-
-            {% include featuredbox.html %}
-
-        {% endif %}
-
-    {% endfor %}
-
+    <div class="article-post">
+    {{ about_page.content }}
     </div>
 </section>
+{% endif %}
 
 {% endif %}
 
