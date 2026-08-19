@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Between Deployments</title>
+  <meta name="description" content="Between Deployments — conversations about modern workplace IT: Intune, Entra ID, Windows 365, and cloud-native device management. Hosted by Jeroen Burgerhout.">
+  <link rel="alternate" type="application/rss+xml" title="Between Deployments" href="https://api.substack.com/feed/podcast/2886741.rss">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0f1117;--card:#1a1d27;--accent:#6366f1;--accent-hover:#818cf8;--text:#e2e8f0;--muted:#94a3b8;--border:#2d3148}
+    body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{color:var(--accent-hover)}
+
+    .hero{text-align:center;padding:3rem 1.5rem 2rem;background:linear-gradient(135deg,#1e1b4b 0%,#0f1117 100%)}
+    .hero img{width:160px;height:160px;border-radius:1rem;margin-bottom:1.5rem;box-shadow:0 8px 32px rgba(99,102,241,.3)}
+    .hero h1{font-size:2rem;font-weight:700;margin-bottom:.5rem}
+    .hero p{max-width:640px;margin:0 auto;color:var(--muted);font-size:1.05rem}
+
+    .subscribe{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+    .subscribe a{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1rem;border:1px solid var(--border);border-radius:.5rem;font-size:.875rem;color:var(--text);transition:border-color .2s}
+    .subscribe a:hover{border-color:var(--accent)}
+
+    .episodes{max-width:800px;margin:2rem auto;padding:0 1.5rem}
+    .episode{background:var(--card);border:1px solid var(--border);border-radius:.75rem;padding:1.5rem;margin-bottom:1rem;transition:border-color .2s}
+    .episode:hover{border-color:var(--accent)}
+    .episode h2{font-size:1.15rem;font-weight:600;margin-bottom:.35rem}
+    .episode .meta{font-size:.8rem;color:var(--muted);margin-bottom:.75rem;display:flex;gap:1rem;flex-wrap:wrap}
+    .episode .desc{font-size:.9rem;color:var(--muted);margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .episode audio{width:100%;height:40px}
+
+    footer{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border);margin-top:2rem}
+
+    #loading{text-align:center;padding:3rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <img id="showImage" src="" alt="Between Deployments" style="display:none">
+    <h1>Between Deployments</h1>
+    <p>Conversations about modern workplace IT — Intune, Entra&nbsp;ID, Windows&nbsp;365, and everything that comes with managing devices in a cloud&#8209;native world. Hosted by Jeroen Burgerhout.</p>
+    <nav class="subscribe">
+      <a href="https://api.substack.com/feed/podcast/2886741.rss">RSS</a>
+      <a href="https://www.burgerhout.org/podcast">Substack</a>
+    </nav>
+  </header>
+
+  <main class="episodes" id="episodes">
+    <div id="loading">Loading episodes…</div>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Between Deployments &middot; Jeroen Burgerhout
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function formatDate(str) {
+      const d = new Date(str);
+      return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    }
+
+    function formatDuration(str) {
+      if (!str) return "";
+      const parts = str.split(":").map(Number);
+      if (parts.length === 3) return parts[0] + "h " + parts[1] + "m";
+      if (parts.length === 2) return parts[0] + "m " + parts[1] + "s";
+      return str;
+    }
+
+    function stripHtml(html) {
+      const tmp = document.createElement("div");
+      tmp.innerHTML = html;
+      return tmp.textContent || tmp.innerText || "";
+    }
+
+    async function loadEpisodes() {
+      try {
+        const res = await fetch("episodes.json");
+        if (!res.ok) throw new Error("No episodes yet");
+        const data = await res.json();
+
+        const img = document.getElementById("showImage");
+        if (data.show.image) { img.src = data.show.image; img.style.display = ""; }
+
+        const container = document.getElementById("episodes");
+        container.innerHTML = "";
+
+        for (const ep of data.episodes) {
+          const card = document.createElement("article");
+          card.className = "episode";
+
+          const desc = stripHtml(ep.description);
+
+          card.innerHTML =
+            '<h2><a href="' + ep.link + '">' + ep.title + '</a></h2>' +
+            '<div class="meta">' +
+              '<span>' + formatDate(ep.pubDate) + '</span>' +
+              (ep.duration ? '<span>' + formatDuration(ep.duration) + '</span>' : '') +
+              (ep.episode ? '<span>Episode ' + ep.episode + '</span>' : '') +
+            '</div>' +
+            '<p class="desc">' + desc + '</p>' +
+            (ep.audio ? '<audio controls preload="none"><source src="' + ep.audio + '" type="audio/mpeg"></audio>' : '');
+
+          container.appendChild(card);
+        }
+      } catch (e) {
+        document.getElementById("loading").textContent = "Episodes will appear after the first feed sync.";
+      }
+    }
+
+    loadEpisodes();
+  </script>
+</body>
+</html>
