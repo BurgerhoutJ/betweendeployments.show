@@ -12,6 +12,14 @@ mailchimp-list:
 include: ["_pages"]
 permalink: /:title/
 
+# Comments are disabled site-wide (no Disqus account configured)
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      comments: false
+
 # Theme
 remote_theme: codebygina/mediumish-theme-jekyll
 
