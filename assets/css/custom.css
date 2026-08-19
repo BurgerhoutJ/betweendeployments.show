@@ -9,3 +9,176 @@ body, h1, h2, h3, h4, h5, h6, .sitetitle, .card-title, .nav-link, p, a, li, span
     width: auto;
     border-radius: 8px;
 }
+
+/* Page background: give the white cards something to sit on */
+body {
+    background-color: #fafafa;
+}
+
+/* Episode number / duration badge over the cover art */
+.wrapthumbnail,
+.maxthumb {
+    position: relative;
+}
+
+.wrapthumbnail::after,
+.maxthumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.episode-badge {
+    position: absolute;
+    left: 12px;
+    bottom: 10px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+}
+
+.episode-badge .ep-num,
+.episode-badge .ep-dur {
+    font-family: "IBM Plex Mono", ui-monospace, monospace !important;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.02em;
+}
+
+.episode-badge .ep-num {
+    background: #00ab6b;
+    padding: 2px 7px;
+    border-radius: 4px;
+}
+
+.episode-badge .ep-dur {
+    font-variant-numeric: tabular-nums;
+    opacity: 0.92;
+}
+
+/* Inline episode player */
+.episode-player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 4px 0 14px;
+    padding: 8px 10px;
+    background: #fafafa;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+
+.player-btn {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: #00ab6b;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.player-btn:hover {
+    background: #038252;
+}
+
+.player-btn:focus-visible {
+    outline: 2px solid #00ab6b;
+    outline-offset: 3px;
+}
+
+.player-btn svg {
+    width: 12px;
+    height: 12px;
+}
+
+.player-btn .icon-pause {
+    display: none;
+}
+
+.episode-player.is-playing .player-btn .icon-play {
+    display: none;
+}
+
+.episode-player.is-playing .player-btn .icon-pause {
+    display: block;
+}
+
+.player-track {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.player-bar {
+    height: 4px;
+    border-radius: 100px;
+    background: rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.player-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 100px;
+    background: #00ab6b;
+}
+
+.player-time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    color: rgba(0, 0, 0, 0.44);
+    font-variant-numeric: tabular-nums;
+}
+
+.player-time span {
+    font-family: "IBM Plex Mono", ui-monospace, monospace !important;
+}
+
+/* "Listen on" chips */
+.listen-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.listen-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px 5px 9px;
+    border-radius: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+}
+
+.listen-chip:hover {
+    border-color: #00ab6b;
+    color: #00ab6b;
+    text-decoration: none;
+}
+
+.listen-chip svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+}

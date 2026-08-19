@@ -1,0 +1,7 @@
+{%- assign chronological = site.posts | sort: 'date' -%}
+{%- assign n = 0 -%}
+{%- for p in chronological -%}
+  {%- assign n = n | plus: 1 -%}
+  {%- if p.url == include.post.url -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
+{%- if n < 10 -%}0{{ n }}{%- else -%}{{ n }}{%- endif -%}

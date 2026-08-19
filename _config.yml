@@ -15,6 +15,13 @@ permalink: /:title/
 # Theme
 remote_theme: codebygina/mediumish-theme-jekyll
 
+# Podcast platforms (used for the "Listen on" links on episode cards)
+podcast:
+  substack: "https://www.burgerhout.org/podcast"
+  rss: "https://api.substack.com/feed/podcast/2886741.rss"
+  spotify: ""
+  apple_podcasts: ""
+
 # Authors
 authors:
   jeroen:

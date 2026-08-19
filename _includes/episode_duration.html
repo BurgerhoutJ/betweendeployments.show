@@ -1,0 +1,19 @@
+{%- assign d = include.post.duration | default: "" -%}
+{%- if d != "" -%}
+  {%- if d contains ":" -%}
+{{ d }}
+  {%- else -%}
+    {%- assign secs = d | plus: 0 -%}
+    {%- assign h = secs | divided_by: 3600 -%}
+    {%- assign rem1 = secs | modulo: 3600 -%}
+    {%- assign m = rem1 | divided_by: 60 -%}
+    {%- assign s = rem1 | modulo: 60 -%}
+    {%- assign s_pad = s | prepend: "00" | slice: -2, 2 -%}
+    {%- if h > 0 -%}
+      {%- assign m_pad = m | prepend: "00" | slice: -2, 2 -%}
+{{ h }}:{{ m_pad }}:{{ s_pad }}
+    {%- else -%}
+{{ m }}:{{ s_pad }}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}

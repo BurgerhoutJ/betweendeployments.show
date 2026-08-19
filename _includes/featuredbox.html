@@ -13,6 +13,12 @@
                             <img class="featured-box-img-cover" src="{% if post.image contains "://" %}{{ post.image }}{% else %}{{ site.baseurl }}/{{ post.image }}{% endif %}">
                             {% endif %}
                         </a>
+                        {% capture ep_duration %}{% include episode_duration.html post=post %}{% endcapture %}
+                        {% assign ep_duration = ep_duration | strip %}
+                        <div class="episode-badge">
+                            <span class="ep-num">EP {% include episode_number.html post=post %}</span>
+                            {% if ep_duration != "" %}<span class="ep-dur">{{ ep_duration }}</span>{% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -30,6 +36,9 @@
                             </h2>
 
                             <h4 class="card-text">{{ post.excerpt | strip_html | truncatewords:25 }}</h4>
+
+                            {% include episode_player.html post=post %}
+                            {% include listen_row.html post=post %}
                         </div>
                         <div class="card-footer b-0 bg-white mt-auto">
                             <div class="wrapfooter">
