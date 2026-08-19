@@ -10,7 +10,7 @@ permalink: /about
 
 No fixed schedule, no filler: just honest conversations with people in the field, recorded whenever there's something worth talking about.
 
-**Hosted by Jeroen Burgerhout** — Microsoft MVP.
+**Hosted by Jeroen Burgerhout** — Microsoft Intune MVP.
 
 ### Subscribe
 

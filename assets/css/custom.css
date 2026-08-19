@@ -1,6 +1,7 @@
 /* Custom overrides for Between Deployments */
 
-.navbar-brand img {
-    max-height: 40px;
+.site-logo {
+    max-height: 80px;
     width: auto;
+    border-radius: 8px;
 }

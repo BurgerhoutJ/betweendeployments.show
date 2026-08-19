@@ -33,7 +33,7 @@
     <div class="container pr-0">
 
     <a class="navbar-brand" href="{{ site.baseurl }}/">
-    <img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
+    {{ site.name }}
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,10 +60,6 @@
                 <a class="nav-link" href="https://api.substack.com/feed/podcast/2886741.rss"><i class="fa fa-rss"></i> RSS</a>
                 </li>
 
-                <li class="nav-item">
-                <a class="nav-link" href="https://www.burgerhout.org/podcast">Substack</a>
-                </li>
-
         </ul>
 
     </div>
@@ -80,10 +76,13 @@
 <!-- Site Title
 ================================================== -->
 <div class="mainheading">
-    <h1 class="sitetitle">{{ site.name }}</h1>
-    <p class="lead">
-        {{ site.description }}
-    </p>
+    <div class="d-flex align-items-center">
+        <img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}" class="site-logo mr-3">
+        <div>
+            <h1 class="sitetitle">{{ site.name }}</h1>
+            <p class="lead">{{ site.description }}</p>
+        </div>
+    </div>
 </div>
 
 <!-- Content
