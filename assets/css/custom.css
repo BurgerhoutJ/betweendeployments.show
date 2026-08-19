@@ -10,6 +10,11 @@ body, h1, h2, h3, h4, h5, h6, .sitetitle, .card-title, .nav-link, p, a, li, span
     border-radius: 8px;
 }
 
+.mediumnavigation .navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
 /* Page background: give the white cards something to sit on */
 body {
     background-color: #fafafa;
