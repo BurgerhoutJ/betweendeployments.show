@@ -244,6 +244,20 @@ body {
     color: var(--coral);
 }
 
+.episode-video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    margin: 1.5rem 0;
+    overflow: hidden;
+    background: #dff3fb;
+}
+
+.episode-video iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
 .card-group .card {
     overflow: hidden;
     border: 1px solid var(--line);
