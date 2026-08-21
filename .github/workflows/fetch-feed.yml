@@ -23,7 +23,7 @@ jobs:
 
       - name: Fetch RSS and generate posts
         run: |
-          curl --fail --location --retry 5 --retry-delay 2 --retry-all-errors --user-agent "between-deployments-feed/1.0" "https://api.substack.com/feed/podcast/2886741.rss" -o feed.xml
+          curl --fail --location --retry 5 --retry-delay 2 --retry-all-errors --user-agent "between-deployments-feed/1.0" "https://burgerhoutj.substack.com/feed" -o feed.xml
           python3 scripts/rss_to_posts.py feed.xml _posts
           rm feed.xml
 
