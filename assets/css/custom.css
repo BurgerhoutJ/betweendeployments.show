@@ -165,7 +165,7 @@ body {
 }
 
 .latest-episode-copy {
-    max-width: 900px;
+    max-width: none;
     margin: 0 auto;
 }
 
@@ -227,6 +227,10 @@ body {
     width: 100%;
     height: 100%;
     border: 0;
+}
+
+.latest-episode-video {
+    width: 100%;
 }
 
 .card-group .card {
