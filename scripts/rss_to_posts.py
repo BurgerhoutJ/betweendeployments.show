@@ -70,17 +70,16 @@ for item in items:
     episode = item["episode"]
     audio_url = item["audio_url"]
     image_url = item["image_url"]
+    dt = parse_date(pub_date)
+    date_str = dt.strftime("%Y-%m-%d")
+    filename = f"{date_str}-{slug(title)}.md"
+    filepath = os.path.join(out_dir, filename)
     video_match = re.search(r'https?://(?:www\.)?(?:youtube\.com/watch\?v=[\w-]+|youtu\.be/[\w-]+|[^\s"\']+\.(?:mp4|webm))', description)
     video_url = video_match.group(0) if video_match else ""
     if os.path.exists(filepath):
         existing_post = open(filepath, encoding="utf-8").read()
         existing_video = re.search(r'^video:\s*"([^"]*)"', existing_post, re.MULTILINE)
         video_url = existing_video.group(1) if existing_video and existing_video.group(1) else video_url
-
-    dt = parse_date(pub_date)
-    date_str = dt.strftime("%Y-%m-%d")
-    filename = f"{date_str}-{slug(title)}.md"
-    filepath = os.path.join(out_dir, filename)
 
     excerpt = strip_html(description)[:200].rsplit(" ", 1)[0] + "..."
 

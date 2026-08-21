@@ -24,6 +24,12 @@
         YouTube
     </a>
     {%- endif -%}
+    {%- if site.podcast.youtube_playlist and site.podcast.youtube_playlist != site.podcast.youtube -%}
+    <a class="listen-chip" href="{{ site.podcast.youtube_playlist }}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="m6.5 5.3 4.2 2.7-4.2 2.7V5.3Z" fill="currentColor" stroke="none"/><path d="M2 5h12M2 11h12" opacity=".45"/></svg>
+        YouTube Playlist
+    </a>
+    {%- endif -%}
     {%- if site.podcast.rss and site.podcast.rss != "" -%}
     <a class="listen-chip" href="{{ site.podcast.rss }}" target="_blank" rel="noopener">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="3.6" cy="12.4" r="1.3" fill="currentColor" stroke="none"/><path d="M2.5 8c3.6 0 5.5 1.9 5.5 5.5M2.5 4c5.8 0 9.5 3.7 9.5 9.5" stroke-linecap="round"/></svg>
