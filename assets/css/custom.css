@@ -118,9 +118,9 @@ body {
     font-size: 0.95rem;
 }
 
-.about-intro .article-post .update-note {
-    margin: 1.25rem 0 0;
-    color: #ffffff;
+.footer .update-note {
+    margin: 0 0 1rem;
+    color: #d7edf7;
     font-family: "IBM Plex Mono", ui-monospace, monospace !important;
     font-size: 0.68rem;
     font-weight: 600;
