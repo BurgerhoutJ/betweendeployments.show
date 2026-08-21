@@ -24,9 +24,8 @@ jobs:
       - name: Fetch RSS and generate posts
         run: |
           curl --fail --location --retry 5 --retry-delay 2 --retry-all-errors --user-agent "between-deployments-feed/1.0" "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fapi.substack.com%2Ffeed%2Fpodcast%2F2886741.rss" -o feed.json
-          curl --fail --location --retry 5 --retry-delay 2 --retry-all-errors --user-agent "between-deployments-feed/1.0" "https://www.youtube.com/feeds/videos.xml?playlist_id=PLZ1XeY_ukcfY" -o videos.xml
-          python3 scripts/rss_to_posts.py feed.json _posts videos.xml
-          rm feed.json videos.xml
+          python3 scripts/rss_to_posts.py feed.json _posts
+          rm feed.json
 
       - name: Commit if changed
         run: |

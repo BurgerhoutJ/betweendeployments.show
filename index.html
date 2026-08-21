@@ -39,6 +39,11 @@ title: Home
         <h1 id="latest-episode-title">{{ latest_episode.title }}</h1>
         <p class="latest-episode-description">{{ latest_episode.excerpt | strip_html | truncatewords: 42 }}</p>
         {% include episode_player.html post=latest_episode %}
+        {% if latest_episode.video and latest_episode.video != "" %}
+        <div class="episode-video latest-episode-video">
+            <iframe src="{{ latest_episode.video | replace: 'watch?v=', 'embed/' }}" title="{{ latest_episode.title }}" loading="lazy" allowfullscreen></iframe>
+        </div>
+        {% endif %}
         {% include listen_row.html post=latest_episode %}
         <a class="latest-episode-link" href="{{ site.baseurl }}{{ latest_episode.url }}">View episode <span aria-hidden="true">&rarr;</span></a>
     </div>
