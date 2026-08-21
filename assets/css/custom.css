@@ -234,7 +234,10 @@ body {
 }
 
 .layout-post .featured-image {
-    display: none;
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    visibility: hidden;
 }
 
 .card-group .card {
