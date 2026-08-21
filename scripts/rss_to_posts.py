@@ -88,11 +88,13 @@ for item in items:
     filename = f"{date_str}-{slug(title)}.md"
     filepath = os.path.join(out_dir, filename)
     video_match = re.search(r'https?://(?:www\.)?(?:youtube\.com/watch\?v=[\w-]+|youtu\.be/[\w-]+|[^\s"\']+\.(?:mp4|webm))', description)
-    video_url = video_match.group(0) if video_match else video_by_title.get(title_key(title), "")
+    playlist_video = video_by_title.get(title_key(title), "")
+    video_url = video_match.group(0) if video_match else playlist_video
     if os.path.exists(filepath):
         existing_post = open(filepath, encoding="utf-8").read()
         existing_video = re.search(r'^video:\s*"([^"]*)"', existing_post, re.MULTILINE)
-        video_url = existing_video.group(1) if existing_video and existing_video.group(1) else video_url
+        if not playlist_video:
+            video_url = existing_video.group(1) if existing_video and existing_video.group(1) else video_url
 
     excerpt = strip_html(description)[:200].rsplit(" ", 1)[0] + "..."
 
