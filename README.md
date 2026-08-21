@@ -11,6 +11,6 @@ Hosted by **Jeroen Burgerhout** (Microsoft Intune MVP).
 
 ## How it works
 
-A GitHub Action runs every 6 hours to fetch the podcast RSS feed from Substack and generate posts automatically.
+A GitHub Action runs every 4 hours to fetch the podcast RSS feed from Substack and generate posts automatically.
 
 Episode cards show a player and "Listen on" links driven by each post's `audio`, `duration`, and `link` front matter (filled in automatically by the fetch script) and by the `podcast:` block in [_config.yml](_config.yml). Add `spotify` / `apple_podcasts` URLs there once the show is listed on those platforms — the chips only appear once a URL is set.

@@ -118,6 +118,16 @@ body {
     font-size: 0.95rem;
 }
 
+.about-intro .article-post .update-note {
+    margin: 1.25rem 0 0;
+    color: #ffffff;
+    font-family: "IBM Plex Mono", ui-monospace, monospace !important;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
 .hero-signal {
     display: flex;
     align-items: center;
