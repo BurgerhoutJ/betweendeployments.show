@@ -10,12 +10,39 @@ title: Home
 {% assign about_page = site.pages | where: "url", "/about" | first %}
 {% if about_page %}
 <section class="about-intro">
-    <div class="article-post">
+    <div class="podcast-hero article-post">
+    <p class="hero-kicker">A workplace technology podcast</p>
     {{ about_page.content }}
+    <div class="hero-signal" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     </div>
 </section>
 {% endif %}
 
+{% endif %}
+
+<!-- Latest episode
+================================================== -->
+{% assign latest_episode = site.posts | where: "featured", true | first %}
+{% if latest_episode == nil %}
+    {% assign latest_episode = site.posts | first %}
+{% endif %}
+{% if latest_episode %}
+<section class="latest-episode" aria-labelledby="latest-episode-title">
+    <div class="latest-episode-art">
+        {% if latest_episode.image %}
+        <img src="{% if latest_episode.image contains "://" %}{{ latest_episode.image }}{% else %}{{ site.baseurl }}/{{ latest_episode.image }}{% endif %}" alt="{{ latest_episode.title }}">
+        {% endif %}
+        <span class="latest-episode-label">Latest episode</span>
+    </div>
+    <div class="latest-episode-copy">
+        <p class="episode-kicker">Between Deployments / Now playing</p>
+        <h1 id="latest-episode-title">{{ latest_episode.title }}</h1>
+        <p class="latest-episode-description">{{ latest_episode.excerpt | strip_html | truncatewords: 42 }}</p>
+        {% include episode_player.html post=latest_episode %}
+        {% include listen_row.html post=latest_episode %}
+        <a class="latest-episode-link" href="{{ site.baseurl }}{{ latest_episode.url }}">View episode <span aria-hidden="true">&rarr;</span></a>
+    </div>
+</section>
 {% endif %}
 
 <!-- Posts Index
