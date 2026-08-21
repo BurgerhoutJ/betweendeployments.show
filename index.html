@@ -28,17 +28,10 @@ title: Home
 {% endif %}
 {% if latest_episode %}
 <section class="latest-episode" aria-labelledby="latest-episode-title">
-    <div class="latest-episode-art">
-        {% if latest_episode.image %}
-        <img src="{% if latest_episode.image contains "://" %}{{ latest_episode.image }}{% else %}{{ site.baseurl }}/{{ latest_episode.image }}{% endif %}" alt="{{ latest_episode.title }}">
-        {% endif %}
-        <span class="latest-episode-label">Latest episode</span>
-    </div>
     <div class="latest-episode-copy">
         <p class="episode-kicker">Between Deployments / Now playing</p>
         <h1 id="latest-episode-title">{{ latest_episode.title }}</h1>
         <p class="latest-episode-description">{{ latest_episode.excerpt | strip_html | truncatewords: 42 }}</p>
-        {% include episode_player.html post=latest_episode %}
         {% if latest_episode.video and latest_episode.video != "" %}
         <div class="episode-video latest-episode-video">
             <iframe src="{{ latest_episode.video | replace: 'watch?v=', 'embed/' }}" title="{{ latest_episode.title }}" loading="lazy" allowfullscreen></iframe>

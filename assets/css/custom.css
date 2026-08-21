@@ -156,10 +156,7 @@ body {
 }
 
 .latest-episode {
-    display: grid;
-    grid-template-columns: minmax(220px, 31%) 1fr;
-    gap: clamp(1.5rem, 4vw, 4rem);
-    align-items: center;
+    display: block;
     margin: 0 -15px 4rem;
     padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1.25rem, 4vw, 4rem);
     background: #dff3fb;
@@ -167,35 +164,9 @@ body {
     border-bottom: 1px solid var(--line);
 }
 
-.latest-episode-art {
-    position: relative;
-    aspect-ratio: 1;
-    overflow: hidden;
-    background: #b8e8f5;
-}
-
-.latest-episode-art img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.latest-episode-label {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    padding: 0.45rem 0.7rem;
-    color: #ffffff;
-    background: var(--coral);
-    font-family: "IBM Plex Mono", ui-monospace, monospace !important;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
 .latest-episode-copy {
-    max-width: 700px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .episode-kicker {
@@ -333,12 +304,7 @@ body {
     .site-content { padding-top: 64px; }
     .about-intro { margin-bottom: 2.5rem; }
     .about-intro .article-post p { font-size: 1rem; }
-    .latest-episode {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin-bottom: 2.5rem;
-    }
-    .latest-episode-art { max-width: 260px; }
+    .latest-episode { margin-bottom: 2.5rem; }
 }
 
 /* Episode number / duration badge over the cover art */
