@@ -19,7 +19,7 @@ No fixed schedule..."
 
 <audio controls style="width:100%"><source src="https://api.substack.com/feed/podcast/212139516/ee1b0cf4f8dcf13596210190e09da967.mp3" type="audio/mpeg"></audio>
 
-<div class="episode-video"><iframe src="https://www.youtube.com/embed/tm3SQwdHook" title="Between Deployments The Kick Off" loading="lazy" allowfullscreen></iframe></div>
+<div class="episode-video"><iframe src="https://www.youtube.com/embed/tm3SQwdHook" title="Between Deployments “The Kick Off”" loading="lazy" allowfullscreen></iframe></div>
 
 
 <p>Welcome to <strong>Between Deployments</strong>.</p>
