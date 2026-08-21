@@ -17,6 +17,9 @@ def text(el, tag, ns=None):
 def strip_html(raw):
     return re.sub(r"<[^>]+>", "", html.unescape(raw))
 
+def title_key(value):
+    return re.sub(r"[^a-z0-9]+", "", value.lower())
+
 out_dir = sys.argv[2]
 os.makedirs(out_dir, exist_ok=True)
 video_feed_path = sys.argv[3] if len(sys.argv) > 3 else ""
@@ -69,7 +72,7 @@ if video_feed_path:
         video_title = text(video_entry, "{http://www.w3.org/2005/Atom}title")
         video_link = video_entry.find("{http://www.w3.org/2005/Atom}link[@rel='alternate']")
         if video_link is not None and video_link.get("href"):
-            video_by_title[video_title] = video_link.get("href")
+            video_by_title[title_key(video_title)] = video_link.get("href")
 
 for item in items:
     title = item["title"]
@@ -80,7 +83,7 @@ for item in items:
     episode = item["episode"]
     audio_url = item["audio_url"]
     image_url = item["image_url"]
-    video_url = video_by_title.get(title, "")
+    video_url = video_by_title.get(title_key(title), "")
 
     dt = parse_date(pub_date)
     date_str = dt.strftime("%Y-%m-%d")
