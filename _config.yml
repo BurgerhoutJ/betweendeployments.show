@@ -27,8 +27,9 @@ remote_theme: codebygina/mediumish-theme-jekyll
 podcast:
   substack: "https://www.burgerhout.org/podcast"
   rss: "https://api.substack.com/feed/podcast/2886741.rss"
-  spotify: ""
-  apple_podcasts: ""
+  spotify: "https://open.spotify.com/show/7hgphI6WYj6ifPbiZy4aOW"
+  apple_podcasts: "https://podcasts.apple.com/us/podcast/between-deployments/id6803070775"
+  youtube: "https://www.youtube.com/playlist?list=PLZ1XeY_ukcfY"
 
 # Authors
 authors:

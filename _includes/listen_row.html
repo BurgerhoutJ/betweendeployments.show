@@ -18,6 +18,12 @@
         Apple Podcasts
     </a>
     {%- endif -%}
+    {%- if site.podcast.youtube and site.podcast.youtube != "" -%}
+    <a class="listen-chip" href="{{ site.podcast.youtube }}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M14.7 4.1a1.8 1.8 0 0 0-1.3-1.3C12.2 2.5 8 2.5 8 2.5s-4.2 0-5.4.3A1.8 1.8 0 0 0 1.3 4.1C1 5.3 1 8 1 8s0 2.7.3 3.9a1.8 1.8 0 0 0 1.3 1.3c1.2.3 5.4.3 5.4.3s4.2 0 5.4-.3a1.8 1.8 0 0 0 1.3-1.3C15 10.7 15 8 15 8s0-2.7-.3-3.9ZM6.7 10.3V5.7L10.8 8l-4.1 2.3Z"/></svg>
+        YouTube
+    </a>
+    {%- endif -%}
     {%- if site.podcast.rss and site.podcast.rss != "" -%}
     <a class="listen-chip" href="{{ site.podcast.rss }}" target="_blank" rel="noopener">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="3.6" cy="12.4" r="1.3" fill="currentColor" stroke="none"/><path d="M2.5 8c3.6 0 5.5 1.9 5.5 5.5M2.5 4c5.8 0 9.5 3.7 9.5 9.5" stroke-linecap="round"/></svg>
