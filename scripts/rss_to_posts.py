@@ -1,5 +1,6 @@
-import os, re, sys, html
+import os, re, sys, html, json
 import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 
 NS = {"itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd"}
@@ -16,27 +17,61 @@ def text(el, tag, ns=None):
 def strip_html(raw):
     return re.sub(r"<[^>]+>", "", html.unescape(raw))
 
-tree = ET.parse(sys.argv[1])
 out_dir = sys.argv[2]
 os.makedirs(out_dir, exist_ok=True)
 
-channel = tree.getroot().find("channel")
+with open(sys.argv[1], encoding="utf-8") as feed_file:
+    feed_data = feed_file.read()
 
-for item in channel.findall("item"):
-    title = text(item, "title")
-    pub_date = text(item, "pubDate")
-    link = text(item, "link")
-    description = text(item, "description")
-    duration = text(item, "itunes:duration", NS)
-    episode = text(item, "itunes:episode", NS)
+def parse_date(value):
+    try:
+        return parsedate_to_datetime(value)
+    except (TypeError, ValueError):
+        return datetime.strptime(value, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
 
-    enc = item.find("enclosure")
-    audio_url = enc.get("url", "") if enc is not None else ""
+if feed_data.lstrip().startswith("{"):
+    json_feed = json.loads(feed_data)
+    items = []
+    for item in json_feed.get("items", []):
+        enclosure = item.get("enclosure") or {}
+        items.append({
+            "title": item.get("title", ""),
+            "pub_date": item.get("pubDate", ""),
+            "link": item.get("link", ""),
+            "description": item.get("content") or item.get("description", ""),
+            "duration": item.get("duration", ""),
+            "episode": item.get("episode", ""),
+            "audio_url": enclosure.get("link", ""),
+            "image_url": item.get("thumbnail", ""),
+        })
+else:
+    channel = ET.fromstring(feed_data).find("channel")
+    items = []
+    for item in channel.findall("item"):
+        enc = item.find("enclosure")
+        ep_img = item.find("itunes:image", NS)
+        items.append({
+            "title": text(item, "title"),
+            "pub_date": text(item, "pubDate"),
+            "link": text(item, "link"),
+            "description": text(item, "description"),
+            "duration": text(item, "itunes:duration", NS),
+            "episode": text(item, "itunes:episode", NS),
+            "audio_url": enc.get("url", "") if enc is not None else "",
+            "image_url": ep_img.get("href", "") if ep_img is not None else "",
+        })
 
-    ep_img = item.find("itunes:image", NS)
-    image_url = ep_img.get("href", "") if ep_img is not None else ""
+for item in items:
+    title = item["title"]
+    pub_date = item["pub_date"]
+    link = item["link"]
+    description = item["description"]
+    duration = item["duration"]
+    episode = item["episode"]
+    audio_url = item["audio_url"]
+    image_url = item["image_url"]
 
-    dt = parsedate_to_datetime(pub_date)
+    dt = parse_date(pub_date)
     date_str = dt.strftime("%Y-%m-%d")
     filename = f"{date_str}-{slug(title)}.md"
     filepath = os.path.join(out_dir, filename)
@@ -71,4 +106,4 @@ description: "{excerpt.replace('"', '\\"')}"
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(front_matter + body)
 
-print(f"Generated {len(channel.findall('item'))} posts in {out_dir}/")
+print(f"Generated {len(items)} posts in {out_dir}/")

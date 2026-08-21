@@ -23,9 +23,9 @@ jobs:
 
       - name: Fetch RSS and generate posts
         run: |
-          curl --fail --location --retry 5 --retry-delay 2 --retry-all-errors --user-agent "between-deployments-feed/1.0" "https://burgerhoutj.substack.com/feed" -o feed.xml
-          python3 scripts/rss_to_posts.py feed.xml _posts
-          rm feed.xml
+          curl --fail --location --retry 5 --retry-delay 2 --retry-all-errors --user-agent "between-deployments-feed/1.0" "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fburgerhoutj.substack.com%2Ffeed" -o feed.json
+          python3 scripts/rss_to_posts.py feed.json _posts
+          rm feed.json
 
       - name: Commit if changed
         run: |
